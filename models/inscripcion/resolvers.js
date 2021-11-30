@@ -1,4 +1,5 @@
 import { InscriptionModel } from './inscripcion.js';
+
 const resolverInscripciones = {
   Query: {
     Inscripciones: async (parent, args) => {

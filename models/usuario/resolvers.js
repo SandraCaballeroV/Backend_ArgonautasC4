@@ -1,5 +1,7 @@
 
 import { UserModel } from './usuario.js';
+
+
 const resolversUsuario = {
   Query: {
     Usuarios: async (parent, args) => {

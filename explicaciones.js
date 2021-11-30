@@ -7,9 +7,9 @@ import { ObjectiveModel } from './models/objective';
 // METODOLOGÍA ONE TO MANY #1
 const crearProyectoConObjetivos1 = async () => {
   const usuarioInicial = await UserModel.create({
-    nombre: 'Daniel',
-    apellido: 'Saldarriaga',
-    correo: 'dsl@cc.com',
+    nombre: 'Sandra',
+    apellido: 'Caballero',
+    correo: 'scv@cc.com',
     identificacion: '1234',
     rol: Enum_Rol.administrador,
     estado: Enum_EstadoUsuario.autorizado,
@@ -48,9 +48,9 @@ const consultaProyectoConObjetivos1 = async () => {
 // METODOLOGIA ONE TO MANY #2
 const crearProyectoConObjetivos2 = async () => {
   const usuarioInicial = await UserModel.create({
-    nombre: 'Daniel',
-    apellido: 'Saldarriaga',
-    correo: 'dsl@cc.com',
+    nombre: 'Sandra',
+    apellido: 'Caballero',
+    correo: 'scv@cc.com',
     identificacion: '1234',
     rol: Enum_Rol.administrador,
     estado: Enum_EstadoUsuario.autorizado,
