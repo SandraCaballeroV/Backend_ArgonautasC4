@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
+
 const { Schema, model } = mongoose;
 // import { Enum_Rol, Enum_EstadoUsuario } from '../enums/enums';
-
 
 // interface User {
 //   correo: string;
@@ -11,7 +11,6 @@ const { Schema, model } = mongoose;
 //   rol: Enum_Rol;
 //   estado: Enum_EstadoUsuario;
 // }
-
 
 const userSchema = new Schema({
   correo: {
@@ -32,6 +31,10 @@ const userSchema = new Schema({
       message: 'El formato del correo electrónico está malo.',
     },
   },
+  password: {
+    type: String,
+    required: true,
+  },
   identificacion: {
     type: String,
     required: true,
@@ -48,7 +51,6 @@ const userSchema = new Schema({
   rol: {
     type: String,
     required: true,
-    
     enum: ['ESTUDIANTE', 'LIDER', 'ADMINISTRADOR'],
   },
   estado: {
@@ -58,5 +60,24 @@ const userSchema = new Schema({
   },
 });
 
+userSchema.virtual('proyectosLiderados', {
+  ref: 'Proyecto',
+  localField: '_id',
+  foreignField: 'lider',
+});
+
+userSchema.virtual('avancesCreados', {
+  ref: 'Avance',
+  localField: '_id',
+  foreignField: 'creadoPor',
+});
+
+userSchema.virtual('inscripciones', {
+  ref: 'Inscripcion',
+  localField: '_id',
+  foreignField: 'estudiante',
+});
+
 const UserModel = model('User', userSchema);
+
 export { UserModel };
