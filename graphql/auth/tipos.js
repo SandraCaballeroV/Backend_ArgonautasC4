@@ -3,13 +3,10 @@
 import { gql } from 'apollo-server-express';
 
 const tiposAutenticacion = gql`
-
   type Token {
     token: String
     error: String
-
   }
-  
   type Mutation {
     registro(
       nombre: String!
@@ -19,8 +16,11 @@ const tiposAutenticacion = gql`
       rol: Enum_Rol!
       estado: Enum_EstadoUsuario
       password: String!
-    ):Token!
-    }
-`;
+    ): Token!
+    login(correo: String!, password: String!): Token
 
+    validateToken: Token
+   
+  }
+`;
 export { tiposAutenticacion };
