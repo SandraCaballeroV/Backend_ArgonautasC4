@@ -5,7 +5,6 @@ import { generateToken } from '../../utils/tokenUtils.js';
 const resolversAutenticacion = {
   Mutation: {
     registro: async (parent, args) => {
-      try {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(args.password, salt);
 
@@ -29,12 +28,8 @@ const resolversAutenticacion = {
           }),
           authorized: true,
         };
-      } catch (e) {
-        return {
-          error: e,
-        };
-      }
-    },
+
+  
     login: async (parent, args) => {
       const usuario = await UserModel.findOne({ correo: args.correo });
       if (await bcrypt.compare(args.password, usuario.password)) {
