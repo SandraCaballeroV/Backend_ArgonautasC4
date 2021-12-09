@@ -42,7 +42,14 @@ const resolversAutenticacion = {
           }),
         };
       }
+    },
+
+    validateToken: async (parent,args,context)=>{
+      console.log(context)
     }
+
+    
+
       
     
   },

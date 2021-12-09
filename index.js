@@ -5,12 +5,28 @@ import dotenv from 'dotenv';
 import conectarBD from './db/db.js';
 import { tipos } from './graphql/types.js';
 import { resolvers } from './graphql/resolvers.js';
+import { validateToken } from './utils/tokenUtils.js';
 
 dotenv.config();
+
+const getUser = (token) => {
+  if (token) {
+    //FALTA CAPTURA DE ERROR DE JWT Y DE SPLIT
+    const dt = validateToken(token.split(' ')[1]);
+    return { user: dt, authorized: true };
+  } else return null;
+};
 
 const server = new ApolloServer({
   typeDefs: tipos,
   resolvers: resolvers,
+  context: ({ req }) => {
+    console.log("token desde el front",req.headers.authorization)
+    const token = req.headers.authorization;
+    const auth = getUser(token);
+
+    return { auth };
+  },
 });
 const app = express();
 app.use(express.json());
